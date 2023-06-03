@@ -1,0 +1,23 @@
+version: "3.4"
+services:
+  client:
+    container_name: client
+    build: ./client
+    ports:
+      - "80:3000"
+    networks:
+      - mern-network
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+  server:
+    container_name: server
+    build: ./server
+    ports:
+      - "4000:4000"
+    networks:
+      - mern-network
+networks:
+  mern-network:
+    driver: bridge
